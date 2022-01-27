@@ -25,13 +25,40 @@ True
 True
 -}
 palindromeKai :: String -> Bool
-palindromeKai str = palindrome str''
-    where
-        str' = filter isLetter str
-        str'' = map toLower str'
+-- palindromeKai str = palindrome (map toLower (filter isLetter str))
+palindromeKai = palindrome . map toLower . filter isLetter
+
+{-
+h x = g (f x)
+
+        f      g
+    (X) -> (Y) -> (Z)
+        -------->
+            h
+h は f と g を合成したもの
+h :: X -> Z
+f :: X -> Y
+g :: Y -> Z
+
+h = g . f
+-}
 
 sample1 :: String
 sample1 = "madam, I'm Adam."
+
+
+otomojidake :: String -> String 
+otomojidake str = (filter isLetter) str
+
+komojinisuru :: String -> String 
+komojinisuru = map toLower
+
+{-
+filter :: (a -> Bool) -> ([a] -> [a])
+map :: (a -> b) ([a] -> [b])
+-}
+
+
 
 {-
 同値性の検査をする演算子 == 
