@@ -99,9 +99,7 @@ wordLengths = map length . words . removeCommaAndPeriod
 
 {-
 map f リスト
-
 hoge = map toUpper
-
 -}
 
 removeCommaAndPeriod :: String -> String
@@ -111,3 +109,25 @@ isNotCommaAndNotPeriod :: Char -> Bool
 isNotCommaANdNotPeriod ',' = False
 isNotCommaAndNotPeriod '.' = False
 isNotCommaAndNotPeriod _   = True
+
+-- 元素記号
+
+type Dict = [(Int, String )]
+
+
+gensokigouDict :: String -> Dict
+gensokigouDict = map kigou . numbering . words
+{-
+gensokigouDict = numbering . map kigou . words
+
+kigou :: String -> String 
+kigou = undefined 
+-}
+numbering :: [String ] -> [(Int, String)]
+numbering = undefined 
+
+kigou :: (Int, String) -> (Int, String)
+kigou = undefined 
+
+text1 :: String 
+text1 = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can."
