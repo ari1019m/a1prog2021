@@ -1,6 +1,8 @@
 {-# LANGUAGE TypeApplications #-}
 module Ch01 where
 
+import Date.List
+
 -- 00. "stressed" の逆順
 {- |
 >>> ans00
@@ -110,7 +112,7 @@ isNotCommaANdNotPeriod ',' = False
 isNotCommaAndNotPeriod '.' = False
 isNotCommaAndNotPeriod _   = True
 
--- 元素記号
+-- 04 元素記号
 
 type Dict = [(Int, String )]
 
@@ -124,10 +126,33 @@ kigou :: String -> String
 kigou = undefined 
 -}
 numbering :: [String ] -> [(Int, String)]
-numbering = undefined 
+numbering = zip [1 ..]
 
 kigou :: (Int, String) -> (Int, String)
-kigou = undefined 
-
+kigou (i, str)
+    | i == 12     = (i, "Mg")
+    | elem i nums = (i, take 1 str)
+    | otherwise   = (i, take 2 str)
 text1 :: String 
 text1 = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can."
+
+nums :: [Int ]
+nums = [1, 5, 6, 7, 8, 9, 15, 16, 19]
+
+-- 05 N-gram
+bigram :: [a] -> [(a,a)]
+bigram xs = zip xs (tail xs)
+
+text2 :: String 
+text2 = "I am an NLPer"
+
+tangoBigram :: [(String, String )]
+tangoBigram = bigram (words text2)
+
+mojiBigram :: [(Char, Char)]
+mojiBigram = bigram text2
+
+-- (a, a) と (a, a, a) は別の型
+
+ngram :: Int -> [a] -> [[a]]
+ngram n xs = transpose (map inits (tails xs)) !! n
